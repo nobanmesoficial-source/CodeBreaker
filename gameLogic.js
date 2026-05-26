@@ -120,7 +120,7 @@ function submitGuess(userId, level, guess) {
   const db = getDb();
   const game = rotateGameIfNeeded(level);
 
-  const isCorrect = guess === game.code;
+  const isCorrect = String(guess).trim() === String(game.code).trim();
   const correctVal = isCorrect ? 1 : 0;
 
   db.prepare('INSERT INTO guesses (user_id, level, game_code_id, guess, correct) VALUES (?, ?, ?, ?, ?)')
