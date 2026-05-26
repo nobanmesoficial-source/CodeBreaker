@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Breaker - Admin Panel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <div id="login-screen" class="screen">
+      <div class="login-box">
+        <h1>Code Breaker Admin</h1>
+        <p class="subtitle">Server Administration Panel</p>
+        <div class="form-group">
+          <input type="text" id="admin-user" placeholder="Admin username" />
+        </div>
+        <div class="form-group">
+          <input type="password" id="admin-pass" placeholder="Password" />
+        </div>
+        <div class="error" id="login-error"></div>
+        <button onclick="adminLogin()">Login</button>
+      </div>
+    </div>
+
+    <div id="admin-screen" class="screen" style="display:none">
+      <header>
+        <h1>Code Breaker Admin</h1>
+        <div class="header-actions">
+          <span id="admin-user-display"></span>
+          <button class="btn-sm" onclick="exportData()">Export JSON</button>
+          <button class="btn-sm btn-danger" onclick="adminLogout()">Logout</button>
+        </div>
+      </header>
+
+      <div class="stats-grid" id="stats-grid">
+        <div class="stat-card"><h3>Total Users</h3><p id="stat-users">0</p></div>
+        <div class="stat-card"><h3>Total Games</h3><p id="stat-games">0</p></div>
+        <div class="stat-card"><h3>Total Guesses</h3><p id="stat-guesses">0</p></div>
+        <div class="stat-card"><h3>Total Points</h3><p id="stat-points">0</p></div>
+      </div>
+
+      <div style="display:flex;gap:16px;margin:16px 0;flex-wrap:wrap">
+        <div class="tabs">
+          <button class="tab active" onclick="switchTab('leaderboard')">Leaderboard</button>
+          <button class="tab" onclick="switchTab('games')">Active Games</button>
+          <button class="tab" onclick="switchTab('activity')">Recent Activity</button>
+        </div>
+        <div style="flex:1;display:flex;gap:8px;justify-content:flex-end">
+          <button class="btn-sm" onclick="refreshData()">Refresh</button>
+        </div>
+      </div>
+
+      <div id="tab-leaderboard" class="tab-content">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Username</th>
+              <th>Level 1 Wins</th>
+              <th>Level 2 Wins</th>
+              <th>Level 3 Wins</th>
+              <th>Total Points</th>
+            </tr>
+          </thead>
+          <tbody id="leaderboard-body"></tbody>
+        </table>
+      </div>
+
+      <div id="tab-games" class="tab-content" style="display:none">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Level</th>
+              <th>Code</th>
+              <th>Active</th>
+              <th>Generated</th>
+            </tr>
+          </thead>
+          <tbody id="games-body"></tbody>
+        </table>
+      </div>
+
+      <div id="tab-activity" class="tab-content" style="display:none">
+        <table>
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Level</th>
+              <th>Guess</th>
+              <th>Correct</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody id="activity-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

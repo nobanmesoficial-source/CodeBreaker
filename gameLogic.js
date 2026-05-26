@@ -28,16 +28,16 @@ function generateHints(code) {
   const hints = [];
 
   const hintTypes = [
-    () => ({ text: `Sum of digits: ${digits.reduce((a, b) => a + b, 0)}` }),
-    () => ({ text: `Product of digits: ${digits.reduce((a, b) => a * b, 1)}` }),
-    () => ({ text: `Even digits: ${digits.filter(d => d % 2 === 0).length}` }),
-    () => ({ text: `Odd digits: ${digits.filter(d => d % 2 !== 0).length}` }),
-    () => ({ text: `First digit + last digit: ${digits[0] + digits[3]}` }),
-    () => ({ text: `Sum of first two: ${digits[0] + digits[1]}` }),
-    () => ({ text: `Sum of last two: ${digits[2] + digits[3]}` }),
-    () => ({ text: `Digits range: ${Math.min(...digits)}-${Math.max(...digits)}` }),
-    () => ({ text: `Middle two sum: ${digits[1] + digits[2]}` }),
-    () => ({ text: `First * last: ${digits[0] * digits[3]}` }),
+    () => ({ text: `Сумма цифр: ${digits.reduce((a, b) => a + b, 0)}` }),
+    () => ({ text: `Произведение цифр: ${digits.reduce((a, b) => a * b, 1)}` }),
+    () => ({ text: `Чётных цифр: ${digits.filter(d => d % 2 === 0).length}` }),
+    () => ({ text: `Нечётных цифр: ${digits.filter(d => d % 2 !== 0).length}` }),
+    () => ({ text: `Первая + последняя: ${digits[0] + digits[3]}` }),
+    () => ({ text: `Сумма первых двух: ${digits[0] + digits[1]}` }),
+    () => ({ text: `Сумма последних двух: ${digits[2] + digits[3]}` }),
+    () => ({ text: `Диапазон цифр: ${Math.min(...digits)}-${Math.max(...digits)}` }),
+    () => ({ text: `Сумма средних двух: ${digits[1] + digits[2]}` }),
+    () => ({ text: `Первая * последняя: ${digits[0] * digits[3]}` }),
   ];
 
   const shuffled = hintTypes.sort(() => Math.random() - 0.5);
@@ -75,7 +75,7 @@ function createNewGame(level) {
     const enc = encodePassword(code);
     encodedData = enc.encodedBase64;
     xorKey = enc.xorKey;
-    hints = JSON.stringify([{ text: `Password length: ${enc.length}` }, { text: `Characters: letters, digits, special` }]);
+    hints = JSON.stringify([{ text: `Длина пароля: ${enc.length}` }, { text: `Символы: буквы, цифры, спецсимволы` }]);
   }
 
   const stmt = db.prepare(`
@@ -200,11 +200,11 @@ function getLevel3GameData(userId) {
 }
 
 function generateServerCodeExample(encodedBase64, xorKey) {
-  return `# Server encoded the password:
+  return `# Сервер закодировал пароль:
 # base64: ${encodedBase64}
 # xor_key: ${xorKey}
 # 
-# Your code should decode it and print the password.`;
+# Ваш код должен декодировать и вывести пароль.`;
 }
 
 function getLeaderboard() {
